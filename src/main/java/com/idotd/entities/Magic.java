@@ -6,12 +6,12 @@
 package com.idotd.entities;
 
 public class Magic {
-    private String _proc;
+    private String proc;
         
     public String getProc(){
-        return _proc;
+        return proc;
     }
     public void setProc(String proc){
-        this._proc = proc;
+        proc = proc;
     }
 }
