@@ -11,7 +11,7 @@ public class Magic {
     public String getProc(){
         return proc;
     }
-    public void setProc(String proc){
-        proc = proc;
+    public void setProc(String txt){
+        proc = txt;
     }
 }

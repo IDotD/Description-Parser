@@ -8,23 +8,23 @@ package com.idotd.entities;
 
 public class Effect {
         private Magic magic;
-        private int baseDamage;
-        private int baseChance;
+        private int dmg;
+        private int chance;
         //private Condition[] conditions;
     
     public int getBaseDamage(){
-        return baseDamage;
+        return dmg;
     }
     
-    public void setBaseDamage(int min){
-        baseDamage = min;
+    public void setBaseDamage(int newDmg){
+        dmg = newDmg;
     }
     
     public int getBaseChance(){
-        return baseChance;
+        return chance;
     }
     
-    public void setBaseChance(int min){
-        baseChance = min;
+    public void setBaseChance(int newChance){
+        chance = newChance;
     }
 }

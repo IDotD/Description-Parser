@@ -11,15 +11,15 @@ import com.idotd.interfaces.Parser;
 public class MagicParser implements Parser {
     private Magic magic;
     
-    public MagicParser(Magic magic){
-        this.magic = magic;
+    public MagicParser(Magic newMagic){
+        magic = newMagic;
     }
     
     @Override
     public void run() {
         String[] components = magic.getProc().split(";");
         for( int i = 0; i < components.length; ++i){
-            
+
         }
     }
 }
