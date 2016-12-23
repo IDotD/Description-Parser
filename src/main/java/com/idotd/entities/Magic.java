@@ -6,12 +6,32 @@
 package com.idotd.entities;
 
 public class Magic {
+
+    private Effect[] effects;
+    private String name;
     private String proc;
-        
-    public String getProc(){
+
+    public String getProc() {
         return proc;
     }
-    public void setProc(String txt){
-        proc = txt;
+
+    public void setProc(String proc) {
+        this.proc = proc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Effect[] getEffect() {
+        return effects;
+    }
+
+    public void setEffects(Effect[] effects) {
+        this.effects = effects;
     }
 }
