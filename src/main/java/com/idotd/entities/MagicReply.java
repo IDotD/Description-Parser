@@ -7,38 +7,40 @@ package com.idotd.entities;
 
 public class MagicReply {
 
+	private Effect[] effects;
+    private String name;
+    private String proc;
+
 	public MagicReply(Effect[] effects, String name, String proc) {
 		super();
 		this.effects = effects;
 		this.name = name;
 		this.proc = proc;
 	}
-
-	private Effect[] effects;
-    private String name;
-    private String proc;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getProc() {
-		return proc;
-	}
-
-	public void setProc(String proc) {
-		this.proc = proc;
-	}
-
+	
 	public Effect[] getEffects() {
 		return effects;
 	}
-
 	public void setEffects(Effect[] effects) {
+
 		this.effects = effects;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+
+		this.name = name;
+	}
+		
+	
+	public String getProc() {
+		return proc;
+	}
+	
+	public void setProc(String proc) {
+		this.proc = proc;
 	}
 }

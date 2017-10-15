@@ -1,6 +1,9 @@
 package com.idotd.entities;
 
 public class MagicRequest {
+	
+	private int id;
+	private String proc;
 
 	public MagicRequest(int id, String proc) {
 		super();
@@ -11,7 +14,6 @@ public class MagicRequest {
 	public String getProc() {
 		return proc;
 	}
-
 	public void setProc(String proc) {
 		this.proc = proc;
 	}
@@ -19,13 +21,9 @@ public class MagicRequest {
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	private int id;
-
-	private String proc;
 	
 }

@@ -7,7 +7,15 @@ package com.idotd.entities;
  */
 public class Effect {
 
-    private MagicReply magic;
+    public Effect(MagicReply magic, int dmg, int chance, String text) {
+		super();
+		this.magic = magic;
+		this.dmg = dmg;
+		this.chance = chance;
+		this.text = text;
+	}
+
+	private MagicReply magic;
     private int dmg;
     private int chance;
     private String text;
@@ -28,15 +36,21 @@ public class Effect {
     public void setBaseChance(int newChance) {
         chance = newChance;
     }
+    
 
-    public Effect(MagicReply magic, int dmg, int chance, String text) {
-        this.magic = magic;
-        this.dmg = dmg;
-        this.chance = chance;
-        this.text = text;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public String ToString() {
-        return "This effect belongs to " + magic.getName() + " and has a chance of" + chance + "to deal" + dmg + " damage";
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public MagicReply getMagic() {
+		return magic;
+	}
+
+	public void setMagic(MagicReply magic) {
+		this.magic = magic;
+	}
 }
