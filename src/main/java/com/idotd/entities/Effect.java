@@ -7,7 +7,7 @@ package com.idotd.entities;
  */
 public class Effect {
 
-    private Magic magic;
+    private MagicReply magic;
     private int dmg;
     private int chance;
     private String text;
@@ -29,7 +29,7 @@ public class Effect {
         chance = newChance;
     }
 
-    public Effect(Magic magic, int dmg, int chance, String text) {
+    public Effect(MagicReply magic, int dmg, int chance, String text) {
         this.magic = magic;
         this.dmg = dmg;
         this.chance = chance;

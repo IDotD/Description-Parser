@@ -5,7 +5,7 @@
  */
 package com.idotd.entities;
 
-public class Magic {
+public class MagicReply {
 
     private Effect[] effects;
     private String name;
