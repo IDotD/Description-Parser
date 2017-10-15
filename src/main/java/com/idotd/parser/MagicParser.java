@@ -5,15 +5,15 @@
  */
 package com.idotd.parser;
 
-import com.idotd.entities.MagicReply;
+import com.idotd.entities.MagicRequest;
 import com.idotd.entities.Effect;
 import com.idotd.interfaces.Parser;
 
 public class MagicParser implements Parser {
 
-    private MagicReply magic;
+    private MagicRequest magic;
 
-    public MagicParser(MagicReply magic) {
+    public MagicParser(MagicRequest magic) {
         this.magic = magic;
     }
 
@@ -21,11 +21,11 @@ public class MagicParser implements Parser {
     public void run() {
     }
 
-	public MagicReply getMagic() {
+	public MagicRequest getMagic() {
 		return magic;
 	}
 
-	public void setMagic(MagicReply magic) {
+	public void setMagic(MagicRequest magic) {
 		this.magic = magic;
 	}
 }
