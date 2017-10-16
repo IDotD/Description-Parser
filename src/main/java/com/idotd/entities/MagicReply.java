@@ -5,37 +5,37 @@
  */
 package com.idotd.entities;
 
+import java.util.ArrayList;
+
 public class MagicReply {
 
-	private Effect[] effects;
-    private String name;
+	private ArrayList<Effect> effects;
+	private int id;
     private String proc;
 
-	public MagicReply(Effect[] effects, String name, String proc) {
+	public MagicReply(ArrayList<Effect> effects, int id, String proc) {
 		super();
 		this.effects = effects;
-		this.name = name;
+		this.id = id;
 		this.proc = proc;
 	}
 	
-	public Effect[] getEffects() {
+	public ArrayList<Effect> getEffects() {
 		return effects;
 	}
-	public void setEffects(Effect[] effects) {
+	public void setEffects(ArrayList<Effect> effects) {
 
 		this.effects = effects;
 	}
 	
-	
-	public String getName() {
-		return name;
+    public int getId() {
+		return id;
 	}
-	public void setName(String name) {
 
-		this.name = name;
+	public void setId(int id) {
+		this.id = id;
 	}
 		
-	
 	public String getProc() {
 		return proc;
 	}

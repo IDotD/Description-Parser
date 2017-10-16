@@ -7,34 +7,42 @@ package com.idotd.entities;
  */
 public class Effect {
 
-    public Effect(MagicReply magic, int dmg, int chance, String text) {
+    public Effect(int id, int chance, int damage, String text) {
 		super();
-		this.magic = magic;
-		this.dmg = dmg;
+		this.id = id;
 		this.chance = chance;
+		this.damage = damage;
 		this.text = text;
 	}
-
-	private MagicReply magic;
-    private int dmg;
+    
+	private int id;
+    private int damage;
     private int chance;
     private String text;
     //private Condition[] conditions;
+    
+	public int getId() {
+		return id;
+	}
 
-    public int getBaseDamage() {
-        return dmg;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+    public int getDamage() {
+        return damage;
     }
 
-    public void setBaseDamage(int newDmg) {
-        dmg = newDmg;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
-    public int getBaseChance() {
+    public int getChance() {
         return chance;
     }
 
-    public void setBaseChance(int newChance) {
-        chance = newChance;
+    public void setChance(int chance) {
+        this.chance = chance;
     }
     
 
@@ -44,13 +52,5 @@ public class Effect {
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public MagicReply getMagic() {
-		return magic;
-	}
-
-	public void setMagic(MagicReply magic) {
-		this.magic = magic;
 	}
 }
