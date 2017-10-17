@@ -8,18 +8,24 @@ package com.idotd.entities;
 public class Effect {
 
     public Effect(int id, int chance, int damage, String text) {
-		super();
+    	super();
 		this.id = id;
 		this.chance = chance;
 		this.damage = damage;
 		this.text = text;
+		this.setConditions(null);
 	}
     
-	private int id;
-    private int damage;
+    public Effect(int id, int damage, int chance, String text, Condition[] conditions) {
+		this(id, damage,chance, text);
+		this.setConditions(conditions);
+	}
+    
+    private int id;
+	private int damage;
     private int chance;
     private String text;
-    //private Condition[] conditions;
+    private Condition[] conditions;
     
 	public int getId() {
 		return id;
@@ -52,5 +58,13 @@ public class Effect {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Condition[] getConditions() {
+		return conditions;
+	}
+
+	public void setConditions(Condition[] conditions) {
+		this.conditions = conditions;
 	}
 }

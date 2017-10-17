@@ -6,9 +6,11 @@
 package com.idotd.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.idotd.entities.BossTypeCondition;
 import com.idotd.entities.Effect;
 import com.idotd.entities.MagicReply;
 import com.idotd.interfaces.Parser;
@@ -35,24 +37,37 @@ public class MagicParser implements Parser {
 	}
 	
 	private MagicReply parseMagic() {
-		MagicReply magic = new MagicReply(parseEffects(this.magic, this.magic.getProc().split(";")), this.magic.getId(), this.magic.getProc());
+		MagicReply magic = new MagicReply(parseEffects(), this.magic.getId(), this.magic.getProc());
 		
 		return magic;
 	}
 	
-	private ArrayList<Effect> parseEffects(MagicRequest magic, String[] array){
+	private ArrayList<Effect> parseEffects(){
 		ArrayList<Effect> list = new ArrayList<Effect>();
-		Matcher m;
 		
-		for(String item : array) {	
-			Pattern p = Pattern.compile(item);
-			if((m=p.matcher("\\bAttacks by any raid member have a (\\d+)% chance to deal extra (\\d+)% damage([\\s\\S]+)")).matches()){
-				
-			}else if((m=p.matcher("Extra (\\d+)% damage against ([\\s\\S]+) raids")).matches()){
-				list.add(new Effect(magic.getId(), Integer.parseInt(m.group(0)), Integer.parseInt(m.group(1)), item));
+		Pattern p1 = Pattern.compile("(\\d+)%\\schance\\sto\\sdeal\\s(\\d+)%\\sdamage");
+		Matcher m1 = p1.matcher(magic.getProc());
+		
+		if(m1.find()) {
+			list.add(new Effect(magic.getId(),Integer.parseInt(m1.group(0)), Integer.parseInt(m1.group(1)), magic.getProc()));
+			
+			Pattern p2 = Pattern.compile("additional\\s(\\d+)%\\sdamage\\sagainst\\s(.*?)");
+			Matcher m2 = p2.matcher(magic.getProc());
+			while(m2.find()) {
+				list.add(new Effect(magic.getId(), 100, Integer.parseInt(m2.group(0)), magic.getProc(), BossTypeConditionParsing(m2.group(1))));
+			}
+			
+			Pattern p3 = Pattern.compile("Extra\\s(\\d+)%\\sdamage\\sagainst\\s(\\w+)\\sraids");
+			Matcher m3 = p3.matcher(magic.getProc());
+			while(m3.find()) {
+				list.add(new Effect(magic.getId(), 100, Integer.parseInt(m3.group(0)), magic.getProc(), BossTypeConditionParsing(m2.group(1))));
 			}
 		}
 		
 		return list;
+	}
+	
+	private BossTypeCondition[] BossTypeConditionParsing(String s) {
+		return Arrays.stream(s.split(", |,| and ")).map(BossTypeCondition::new).toArray(BossTypeCondition[]::new);
 	}
 }
