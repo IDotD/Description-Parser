@@ -1,70 +1,51 @@
 package com.idotd.entities;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-public class Effect {
+import com.idotd.entities.interfaces.Condition;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Effect(int id, int chance, int damage, String text) {
-    	super();
-		this.id = id;
-		this.chance = chance;
-		this.damage = damage;
-		this.text = text;
-		this.setConditions(null);
-	}
-    
-    public Effect(int id, int damage, int chance, String text, Condition[] conditions) {
-		this(id, damage,chance, text);
-		this.setConditions(conditions);
-	}
+public class Effect {
     
     private int id;
 	private int damage;
     private int chance;
     private String text;
-    private Condition[] conditions;
+    private List<Condition> conditions;
     
+
+    public Effect(int id, int chance, int damage, String text) {
+    	this(id, chance, damage, text, new ArrayList<>());
+	}
+    
+    public Effect(int id, int damage, int chance, String text, List<Condition> conditions) {
+        super();
+		this.id = id;
+		this.chance = chance;
+		this.damage = damage;
+		this.text = text;
+		this.conditions = conditions;
+	}
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
     public int getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
     public int getChance() {
         return chance;
     }
 
-    public void setChance(int chance) {
-        this.chance = chance;
-    }
-    
-
 	public String getText() {
-		return text;
+        return text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
 	}
 
-	public Condition[] getConditions() {
+	public List<Condition> getConditions() {
 		return conditions;
-	}
-
-	public void setConditions(Condition[] conditions) {
-		this.conditions = conditions;
 	}
 }

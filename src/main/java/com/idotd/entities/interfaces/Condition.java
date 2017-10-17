@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.idotd.entities.interfaces;
 
-package com.idotd.interfaces;
+import java.util.regex.Matcher;
 
-public interface Parser extends java.lang.Runnable {
+public interface Condition {
 
-    void run();
-
+    void addMatches(Matcher matcher);
+    
 }
