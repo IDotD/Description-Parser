@@ -6,12 +6,12 @@ import java.util.regex.Matcher;
 
 public class BossTypeCondition implements Condition{
 	protected List<String> types;
-    protected Integer damage;
+    protected float  damage;
     protected String connector = "or";
 	public List<String> getTypes() {
         return types;
     }
-    public Integer getDamage() {
+    public float getDamage() {
         return damage;
     }
     @Override
@@ -23,6 +23,6 @@ public class BossTypeCondition implements Condition{
         for(String t:type.replaceAll(" and ", ",").split(",")) {
             types.add(t.trim());
         }
-        damage = Integer.parseInt(matcher.group(1));
+        damage = Float.parseFloat(matcher.group(1));
     }
 }
