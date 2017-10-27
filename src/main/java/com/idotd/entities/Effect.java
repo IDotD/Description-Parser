@@ -7,8 +7,8 @@ import java.util.List;
 public class Effect {
     
     private int id;
-	private int damage;
-    private int chance;
+	private float damage;
+    private float chance;
     private String text;
     private List<Condition> conditions;
     
@@ -29,11 +29,11 @@ public class Effect {
 		return id;
 	}
 
-    public int getDamage() {
+    public float getDamage() {
         return damage;
     }
 
-    public int getChance() {
+    public float getChance() {
         return chance;
     }
 
