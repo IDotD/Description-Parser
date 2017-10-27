@@ -17,7 +17,7 @@ public class Effect {
     	this(id, chance, damage, text, new ArrayList<>());
 	}
     
-    public Effect(int id, float damage, int chance, String text, List<Condition> conditions) {
+    public Effect(int id, int chance, float damage, String text, List<Condition> conditions) {
         super();
 		this.id = id;
 		this.chance = chance;
