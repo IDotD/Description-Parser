@@ -20,10 +20,11 @@ public class BossTypeCondition implements Condition{
     @Override
     public void addMatches(Matcher matcher) {
         String type = matcher.group(2);
+        System.out.println(type);
         if(type.contains(" and ")) {
             connector = "and";
         }
-        for(String t:type.replaceAll(" and ", ",").split(",")) {
+        for(String t:(type.replaceAll(" (and|or) ", ",")).split(",")) {
             types.add(t.trim());
         }
         damage = Float.parseFloat(matcher.group(1));

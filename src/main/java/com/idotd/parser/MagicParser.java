@@ -33,7 +33,7 @@ public class MagicParser {
         }
         Effect effect = new Effect(magic.getId(),Float.parseFloat(m1.group(1)), Float.parseFloat(m1.group(2)), magic.getProc());
 
-        addConditionToEffect(effect, "additional\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(.*?)", BossTypeCondition.class);
+        addConditionToEffect(effect, "additional\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(.*?)[\\.;]", BossTypeCondition.class);
         addConditionToEffect(effect, "Extra\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(\\w+)\\sraids", BossTypeCondition.class);
 
         return effect;
