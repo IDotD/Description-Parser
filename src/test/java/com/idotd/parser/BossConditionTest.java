@@ -22,7 +22,7 @@ public class BossConditionTest {
 
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(1100,firstResult.getDamage(), 0.1);
-        assertTrue(!firstResult.getTypes().isEmpty());
+        assertFalse(firstResult.getTypes().isEmpty());
         assertEquals("Giant",firstResult.getTypes().get(0));
     }
     @Test
@@ -46,7 +46,7 @@ public class BossConditionTest {
 
         BossTypeCondition secondResult = (BossTypeCondition) result.getConditions().get(1);
         assertEquals(100,secondResult.getDamage(), 0.1);
-        assertTrue(!secondResult.getTypes().isEmpty());
+        assertFalse(secondResult.getTypes().isEmpty());
         assertEquals(1, secondResult.getTypes().size());
         assertEquals("Aquatic",secondResult.getTypes().get(0));
     }
@@ -63,7 +63,7 @@ public class BossConditionTest {
 
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(120,firstResult.getDamage(), 0.1);
-        assertTrue(!firstResult.getTypes().isEmpty());
+        assertFalse(firstResult.getTypes().isEmpty());
         assertEquals("Guild",firstResult.getTypes().get(0));
     }
     
