@@ -2,8 +2,11 @@ package com.idotd.entities;
 
 import com.idotd.entities.interfaces.Condition;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 
 public class BossTypeCondition implements Condition{
@@ -28,6 +31,11 @@ public class BossTypeCondition implements Condition{
         for(String t:(type.replaceAll(" (and|or) ", ",")).split(",")) {
             types.add(t.trim());
         }
-        damage = Float.parseFloat(matcher.group(1));
+        try {
+			damage = NumberFormat.getInstance(Locale.US).parse(matcher.group(1)).floatValue();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
