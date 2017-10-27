@@ -14,6 +14,9 @@ public class BossTypeCondition implements Condition{
     public float getDamage() {
         return damage;
     }
+    public String getConnector() {
+        return connector;
+    }
     @Override
     public void addMatches(Matcher matcher) {
         String type = matcher.group(2);
