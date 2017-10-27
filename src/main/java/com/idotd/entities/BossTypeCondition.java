@@ -1,6 +1,8 @@
 package com.idotd.entities;
 
 import com.idotd.entities.interfaces.Condition;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -24,6 +26,7 @@ public class BossTypeCondition implements Condition{
         if(type.contains(" and ")) {
             connector = "and";
         }
+        if(types==null) {types = new ArrayList<String>(); }
         for(String t:(type.replaceAll(" (and|or) ", ",")).split(",")) {
             types.add(t.trim());
         }
