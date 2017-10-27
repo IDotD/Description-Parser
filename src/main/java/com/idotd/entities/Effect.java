@@ -13,11 +13,11 @@ public class Effect {
     private List<Condition> conditions;
     
 
-    public Effect(int id, int chance, int damage, String text) {
+    public Effect(int id, float chance, int damage, String text) {
     	this(id, chance, damage, text, new ArrayList<>());
 	}
     
-    public Effect(int id, int damage, int chance, String text, List<Condition> conditions) {
+    public Effect(int id, float damage, int chance, String text, List<Condition> conditions) {
         super();
 		this.id = id;
 		this.chance = chance;
