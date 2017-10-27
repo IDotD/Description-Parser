@@ -24,7 +24,7 @@ public class BossTypeCondition implements Condition{
     }
     @Override
     public void addMatches(Matcher matcher) {
-        String type = matcher.group(2);
+        String type = matcher.group("raids");
         if(type.contains(" and ")) {
             connector = "and";
         }
@@ -32,9 +32,14 @@ public class BossTypeCondition implements Condition{
             types.add(t.trim());
         }
         try {
-            damage = UsNumber.asFloat(matcher.group(1));
+            damage = UsNumber.asFloat(matcher.group("damage"));
         } catch (ParseException ex) {
             Logger.getLogger(BossTypeCondition.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+	@Override
+	public String toString() {
+		return "BossTypeCondition [types=" + types + ", damage=" + damage + ", connector=" + connector + "]";
+	}
+    
 }
