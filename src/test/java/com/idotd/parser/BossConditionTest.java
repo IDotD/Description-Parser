@@ -36,7 +36,7 @@ public class BossConditionTest {
         assertEquals(7.5, result.getChance(), 0.1);
         assertEquals(900.8, result.getDamage(), 0.1);
         assertFalse(result.getConditions().isEmpty());
-        assertEquals(1,result.getConditions().size());
+        assertEquals(2,result.getConditions().size());
 
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(1100,firstResult.getDamage(), 0.1);
