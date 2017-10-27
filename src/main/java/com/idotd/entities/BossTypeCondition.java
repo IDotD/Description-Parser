@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 public class BossTypeCondition implements Condition{
-	protected List<String> types;
-    protected float  damage;
+    protected List<String> types = new ArrayList<>();
+    protected float damage = 0;
     protected String connector = "or";
-	public List<String> getTypes() {
+    public List<String> getTypes() {
         return types;
     }
     public float getDamage() {
@@ -22,11 +22,9 @@ public class BossTypeCondition implements Condition{
     @Override
     public void addMatches(Matcher matcher) {
         String type = matcher.group(2);
-        System.out.println(type);
         if(type.contains(" and ")) {
             connector = "and";
         }
-        if(types==null) {types = new ArrayList<String>(); }
         for(String t:(type.replaceAll(" (and|or) ", ",")).split(",")) {
             types.add(t.trim());
         }

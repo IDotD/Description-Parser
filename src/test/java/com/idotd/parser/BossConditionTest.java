@@ -8,72 +8,34 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 
-public class MagicParserTest {
+public class BossConditionTest {
     @Test
-    public void testParse() {
-        System.out.println("parse");
-        MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid memBer has a 7.5% chance to deal 900.8% damage."));
-        Effect result = null;
-		try {
-			result = instance.parse();
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println(result);
-        assertEquals(17, result.getId());
-        assertEquals(7.5, result.getChance(), 0.1);
-        assertEquals(900.8, result.getDamage(), 0.1);
-        assertTrue(result.getConditions().isEmpty());
-    }
-    @Test
-    public void testParseWithBossCondition() {
+    public void testParseWithBossCondition() throws NumberFormatException, ParseException {
         System.out.println("Parse With Boss Condition");
         MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid memBer has a 7.5% chance to deal 900.8% damage; Extra 1,100% damage against Giant raids"));
-        Effect result = null;
-		try {
-			result = instance.parse();
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println(result);
+        Effect result = instance.parse();
         assertEquals(17, result.getId());
         assertEquals(7.5, result.getChance(), 0.1);
         assertEquals(900.8, result.getDamage(), 0.1);
         assertFalse(result.getConditions().isEmpty());
         assertEquals(1,result.getConditions().size());
+
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(1100,firstResult.getDamage(), 0.1);
         assertTrue(!firstResult.getTypes().isEmpty());
         assertEquals("Giant",firstResult.getTypes().get(0));
     }
     @Test
-    public void testParseWithMultiBossCondition() {
+    public void testParseWithMultiBossCondition() throws NumberFormatException, ParseException {
         System.out.println("Parse With Boss Condition");
         MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid memBer has a 7.5% chance to deal 900.8% damage; Extra 1,100% damage against Giant and Dragon raids; Extra 100% damage against Aquatic raids;"));
-        Effect result = null;
-		try {
-			result = instance.parse();
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println(result);
+        Effect result = instance.parse();
         assertEquals(17, result.getId());
         assertEquals(7.5, result.getChance(), 0.1);
         assertEquals(900.8, result.getDamage(), 0.1);
         assertFalse(result.getConditions().isEmpty());
         assertEquals(1,result.getConditions().size());
+
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(1100,firstResult.getDamage(), 0.1);
         assertTrue(!firstResult.getTypes().isEmpty());
@@ -81,6 +43,7 @@ public class MagicParserTest {
         assertEquals("Giant",firstResult.getTypes().get(0));
         assertEquals("Dragon",firstResult.getTypes().get(1));
         assertEquals("and",firstResult.getConnector());
+
         BossTypeCondition secondResult = (BossTypeCondition) result.getConditions().get(1);
         assertEquals(100,secondResult.getDamage(), 0.1);
         assertTrue(!secondResult.getTypes().isEmpty());
@@ -88,25 +51,16 @@ public class MagicParserTest {
         assertEquals("Aquatic",secondResult.getTypes().get(0));
     }
     @Test
-    public void testParseOnlyBossCondition() {
+    public void testParseOnlyBossCondition() throws NumberFormatException, ParseException {
         System.out.println("Parse With Boss Condition");
         MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid member has a 6% chance to deal 120% damage against Guild raids;"));
-        Effect result = null;
-		try {
-			result = instance.parse();
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println(result);
+        Effect result = instance.parse();
         assertEquals(17, result.getId());
         assertEquals(6, result.getChance(), 0.1);
-        assertEquals(120, result.getDamage(), 0.1);
+        assertEquals(0, result.getDamage(), 0.1);
         assertFalse(result.getConditions().isEmpty());
         assertEquals(1,result.getConditions().size());
+
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(120,firstResult.getDamage(), 0.1);
         assertTrue(!firstResult.getTypes().isEmpty());
