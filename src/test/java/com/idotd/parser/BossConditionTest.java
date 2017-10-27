@@ -38,7 +38,7 @@ public class BossConditionTest {
 
         BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
         assertEquals(1100,firstResult.getDamage(), 0.1);
-        assertTrue(!firstResult.getTypes().isEmpty());
+        assertFalse(firstResult.getTypes().isEmpty());
         assertEquals(2, firstResult.getTypes().size());
         assertEquals("Giant",firstResult.getTypes().get(0));
         assertEquals("Dragon",firstResult.getTypes().get(1));
@@ -66,5 +66,26 @@ public class BossConditionTest {
         assertFalse(firstResult.getTypes().isEmpty());
         assertEquals("Guild",firstResult.getTypes().get(0));
     }
-    
+    @Test
+    public void testParseOnlyBossConditionWithBonus() throws NumberFormatException, ParseException {
+        System.out.println("Parse With Boss Condition");
+        MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid member has a 6% chance to deal 120% damage against Guild raids; Extra 23% damage against Beastmen."));
+        Effect result = instance.parse();
+        assertEquals(17, result.getId());
+        assertEquals(6, result.getChance(), 0.1);
+        assertEquals(0, result.getDamage(), 0.1);
+        assertFalse(result.getConditions().isEmpty());
+        assertEquals(1,result.getConditions().size());
+
+        BossTypeCondition firstResult = (BossTypeCondition) result.getConditions().get(0);
+        assertEquals(120,firstResult.getDamage(), 0.1);
+        assertFalse(firstResult.getTypes().isEmpty());
+        assertEquals("Guild",firstResult.getTypes().get(0));
+
+        BossTypeCondition secondResult = (BossTypeCondition) result.getConditions().get(1);
+        assertEquals(23,secondResult.getDamage(), 0.1);
+        assertFalse(secondResult.getTypes().isEmpty());
+        assertEquals(1, secondResult.getTypes().size());
+        assertEquals("Beastmen",secondResult.getTypes().get(0));
+    }
 }
