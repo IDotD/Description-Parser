@@ -13,11 +13,11 @@ public class Effect {
     private List<Condition> conditions;
     
 
-    public Effect(int id, int chance, float damage, String text) {
+    public Effect(int id, float chance, float damage, String text) {
     	this(id, chance, damage, text, new ArrayList<>());
 	}
     
-    public Effect(int id, int chance, float damage, String text, List<Condition> conditions) {
+    public Effect(int id, float chance, float damage, String text, List<Condition> conditions) {
         super();
 		this.id = id;
 		this.chance = chance;
@@ -48,4 +48,12 @@ public class Effect {
 	public List<Condition> getConditions() {
 		return conditions;
 	}
+
+	@Override
+	public String toString() {
+		return "Effect [id=" + id + ",\n\tdamage=" + damage + ",\n\tchance=" + chance + ",\n\ttext=" + text + ",\n\tconditions="
+				+ conditions + "]";
+	}
+	
+	
 }

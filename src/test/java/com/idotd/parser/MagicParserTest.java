@@ -39,7 +39,7 @@ public class MagicParserTest {
         System.out.println("Parse With Boss Condition");
         MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid memBer has a 7.5% chance to deal 900.8% damage; Extra 1,100% damage against Giant and Dragon raids; Extra 100% damage against Aquatic raids;"));
         Effect result = instance.parse();
-        System.out.print(result);
+        System.out.println(result);
         assertEquals(17, result.getId());
         assertEquals(7.5, result.getChance(), 0.1);
         assertEquals(900.8, result.getDamage(), 0.1);

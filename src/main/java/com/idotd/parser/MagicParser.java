@@ -25,16 +25,16 @@ public class MagicParser {
 
     public Effect parse(){
         Matcher m1 = Pattern.compile(
-                "(\\d+)%\\schance\\sto\\sdeal\\s(\\d+)%\\sdamage",
+                "([\\d\\.\\,]+)%\\schance\\sto\\sdeal\\s([\\d\\.\\,]+)%\\sdamage",
                 Pattern.CASE_INSENSITIVE+Pattern.MULTILINE
         ).matcher(magic.getProc());
         if(!m1.find()) {
             return new Effect(magic.getId(),0,0,magic.getProc());
         }
-        Effect effect = new Effect(magic.getId(),Integer.parseInt(m1.group(0)), Integer.parseInt(m1.group(1)), magic.getProc());
+        Effect effect = new Effect(magic.getId(),Float.parseFloat(m1.group(1)), Float.parseFloat(m1.group(2)), magic.getProc());
 
-        addConditionToEffect(effect, "additional\\s(\\d+)%\\sdamage\\sagainst\\s(.*?)", BossTypeCondition.class);
-        addConditionToEffect(effect, "Extra\\s(\\d+)%\\sdamage\\sagainst\\s(\\w+)\\sraids", BossTypeCondition.class);
+        addConditionToEffect(effect, "additional\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(.*?)", BossTypeCondition.class);
+        addConditionToEffect(effect, "Extra\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(\\w+)\\sraids", BossTypeCondition.class);
 
         return effect;
     }
