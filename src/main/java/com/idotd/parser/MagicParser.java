@@ -12,10 +12,8 @@ import com.idotd.entities.BossTypeCondition;
 import com.idotd.entities.interfaces.Condition;
 import com.idotd.entities.Effect;
 import com.idotd.entities.MagicRequest;
-
-import java.text.NumberFormat;
+import com.idotd.service.UsNumber;
 import java.text.ParseException;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +33,7 @@ public class MagicParser {
         if(!m1.find()) {
             return new Effect(magic.getId(),0,0,magic.getProc());
         }
-        Effect effect = new Effect(magic.getId(),NumberFormat.getInstance(Locale.US).parse(m1.group(1)).floatValue(), NumberFormat.getInstance(Locale.US).parse(m1.group(2)).floatValue(), magic.getProc());
+        Effect effect = new Effect(magic.getId(),UsNumber.asFloat(m1.group(1)), UsNumber.asFloat(m1.group(2)), magic.getProc());
 
         addConditionToEffect(effect, "additional\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(.*?)[\\.;]", BossTypeCondition.class);
         addConditionToEffect(effect, "Extra\\s([\\d\\.\\,]+)%\\sdamage\\sagainst\\s(\\w+)\\sraids", BossTypeCondition.class);

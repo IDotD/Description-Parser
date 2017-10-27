@@ -1,12 +1,12 @@
 package com.idotd.entities;
 
 import com.idotd.entities.interfaces.Condition;
-
-import java.text.NumberFormat;
+import com.idotd.service.UsNumber;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 
 public class BossTypeCondition implements Condition{
@@ -32,10 +32,9 @@ public class BossTypeCondition implements Condition{
             types.add(t.trim());
         }
         try {
-			damage = NumberFormat.getInstance(Locale.US).parse(matcher.group(1)).floatValue();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            damage = UsNumber.asFloat(matcher.group(1));
+        } catch (ParseException ex) {
+            Logger.getLogger(BossTypeCondition.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
