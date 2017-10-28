@@ -10,7 +10,7 @@ import java.text.ParseException;
 
 public class OwnedItemConditionTest {
     @Test
-    public void testParseWithBossCondition() throws NumberFormatException, ParseException {
+    public void testParseWithOwnedItemCondition() throws NumberFormatException, ParseException {
         System.out.println("Parse With Boss Condition");
         MagicParser instance = new MagicParser(new MagicRequest(17, "Each attack by any raid memBer has a 7.5% chance to deal 900.8% damage; Extra 35% damage for each piece of Spirit Raven set owned"));
         Effect result = instance.parse();
