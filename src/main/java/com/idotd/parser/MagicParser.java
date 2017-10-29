@@ -48,7 +48,7 @@ public class MagicParser {
 				BossTypeCondition.class);
 		addConditionToEffect(effect, "Extra\\s(?<damage>[\\d\\.\\,]+)%\\sdamage\\sfor\\seach\\s(?<unique>unique\\s)?piece\\sof\\s(?<items>[^\\;]*)\\sset\\sowned",
 				OwnedItemTypeCondition.class);
-		addConditionToEffect(effect, "Extra\\s(?<damage>[\\d\\.\\,]+)%\\s(?:damage\\s)?if\\s(?<items>[^\\;]*)\\sis\\s(?<unique>owned)",
+		addConditionToEffect(effect, "Extra\\s(?<damage>[\\d\\.\\,]+)%\\s(?:damage\\s)?if\\s(?<items>[^\\;]*)\\sis\\sowned(?<unique>foo)?",
 				OwnedItemTypeCondition.class);
 		return effect;
 	}

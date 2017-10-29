@@ -24,6 +24,7 @@ public class OwnedItemConditionTest {
         OwnedItemTypeCondition firstResult = (OwnedItemTypeCondition) result.getConditions().get(0);
         assertEquals(35, firstResult.getDamage(), 0.1);
         assertEquals("Spirit Raven", firstResult.getNames().get(0));
+        assertEquals(9, firstResult.getMax());
     }
     @Test
     public void testParseWithMultipleOwnedSetItemCondition() throws NumberFormatException, ParseException {
@@ -41,6 +42,7 @@ public class OwnedItemConditionTest {
         assertEquals(5, firstResult.getDamage(), 0.1);
         assertEquals("Jovial Jester", firstResult.getNames().get(0));
         assertEquals("Celebration", firstResult.getNames().get(1));
+        assertEquals(9, firstResult.getMax());
     }
     @Test
     public void testParseWithOwnedItemCondition() throws NumberFormatException, ParseException {
@@ -57,5 +59,6 @@ public class OwnedItemConditionTest {
         OwnedItemTypeCondition firstResult = (OwnedItemTypeCondition) result.getConditions().get(0);
         assertEquals(200, firstResult.getDamage(), 0.1);
         assertEquals("Volatile Runes", firstResult.getNames().get(0));
+        assertEquals(1, firstResult.getMax());
     }
 }
