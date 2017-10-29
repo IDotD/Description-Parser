@@ -12,6 +12,7 @@ import com.idotd.entities.BossTypeCondition;
 import com.idotd.entities.interfaces.Condition;
 import com.idotd.entities.Effect;
 import com.idotd.entities.MagicRequest;
+import com.idotd.entities.OwnedItemTypeCondition;
 import com.idotd.service.UsNumber;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -45,6 +46,10 @@ public class MagicParser {
 		Effect effect = createEffect(m);
 		addConditionToEffect(effect, "Extra\\s(?<damage>[\\d\\.\\,]+)%\\sdamage\\sagainst\\s(?<raids>[^\\;]*)raids",
 				BossTypeCondition.class);
+		addConditionToEffect(effect, "Extra\\s(?<damage>[\\d\\.\\,]+)%\\sdamage\\sfor\\seach\\s(?<unique>unique\\s)?piece\\sof\\s(?<items>[^\\;]*)\\sset\\sowned",
+				OwnedItemTypeCondition.class);
+		addConditionToEffect(effect, "Extra\\s(?<damage>[\\d\\.\\,]+)%\\s(?:damage\\s)?if\\s(?<items>[^\\;]*)\\sis\\s(?<unique>owned)",
+				OwnedItemTypeCondition.class);
 		return effect;
 	}
 
